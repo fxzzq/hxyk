@@ -1,0 +1,17 @@
+1、mysql多表查询联系
+SELECT s.no AS no, s.name AS name, c.subname AS subname, g.score AS score
+FROM student s
+LEFT JOIN coursesore g ON s.no = g.no
+LEFT JOIN course c ON c.subid = g.subid
+
+
+update coursesore set score=88 where subid=2
+
+2、jQuery的学习
+3、（键盘录入Scanner），实现会员注册，要求用户名长度不小于3，
+密码长度不小于6，注册时两次输入密码必须相同（字符串）
+（要求：键盘录入）
+4、实现一个简单的登录程序，用jquery作非空验证判断。
+ 
+
+

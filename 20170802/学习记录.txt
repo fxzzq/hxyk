@@ -13,5 +13,4 @@ update coursesore set score=88 where subid=2
 （要求：键盘录入）
 4、实现一个简单的登录程序，用jquery作非空验证判断。
  
-
-
+5、IntelliJ IDEA 2017-2-1x64安装 禁用myeclipse和eclipse

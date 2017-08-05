@@ -1,0 +1,111 @@
+
+DROP table if EXISTS user_extend;
+DROP table if EXISTS user_base;
+
+CREATE TABLE user_base(
+	ID BIGINT PRIMARY key AUTO_INCREMENT NOT NULL,
+	NAME VARCHAR(30) UNIQUE,
+	AGE INT
+);
+
+CREATE TABLE user_extend(
+	BIRTHDAY DATE,
+	FK_USER_BASE BIGINT NOT null primary key,
+	CONSTRAINT FOREIGN KEY (FK_USER_BASE) REFERENCES user_base (ID)
+);
+
+INSERT INTO user_base (NAME, AGE) VALUES ('JACK', 20);
+INSERT INTO user_base (NAME, AGE) VALUES ('TOM', 21);
+INSERT INTO user_base (NAME, AGE) VALUES ('LEE', 22);
+
+INSERT INTO user_extend (BIRTHDAY, FK_USER_BASE) VALUES ('1999-03-01', 1);
+INSERT INTO user_extend (BIRTHDAY, FK_USER_BASE) VALUES ('1999-03-02', 2);
+INSERT INTO user_extend (BIRTHDAY, FK_USER_BASE) VALUES ('1999-03-03', 3);
+
+# 内连接查询（隐式）
+SELECT 
+	b.ID , b.`NAME` AS '姓名', b.AGE AS '年龄', e.BIRTHDAY AS '生日'
+FROM user_base AS b, user_extend AS e WHERE
+e.FK_USER_BASE = b.ID;
+
+# 内连接查询
+SELECT 
+	b.ID , b.NAME AS '姓名', b.AGE AS '年龄', e.BIRTHDAY AS '生日' 
+FROM user_base AS b 
+INNER JOIN
+user_extend AS e ON b.id = e.FK_USER_BASE；
+
+
+
+
+
+# 当有主外键的主表和子表，应该先删除子表，再删除主表
+DROP TABLE IF EXISTS user_extend; # 子表
+DROP TABLE IF EXISTS user_base; # 主表
+
+# 建表的时候，先建主表，再建子表
+CREATE TABLE user_base(
+	id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL COMMENT '用户ID',
+	name VARCHAR(30) COMMENT '用户姓名',
+	age INT COMMENT '用户年龄'
+);
+
+CREATE TABLE user_extend(
+	id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL COMMENT '用户扩展信息ID',
+	birthday DATE COMMENT '用户出生日',
+	fk_user_base BIGINT NOT NULL UNIQUE,
+	CONSTRAINT FOREIGN KEY (fk_user_base) REFERENCES user_base (id)
+);
+
+#INSERT INTO user_base (name, age) VALUES ('Jack', 20);
+#INSERT INTO user_base (name, age) VALUES ('Tom', 22);
+
+INSERT INTO user_base (name, age) VALUES 
+('Jack', 20),
+('Tom', 21),
+('Lee', 22);
+
+INSERT INTO user_extend (birthday, fk_user_base) VALUES
+('1999-03-01', 1),
+('1999-03-02', 2),
+('1999-03-03', 3);
+
+# 联结查询，连接查询
+SELECT * FROM user_base AS b 
+INNER JOIN user_extend AS e 
+ON b.id = e.fk_user_base;
+
+
+DROP table if EXISTS user_extend;
+DROP table if EXISTS user_base;
+
+CREATE TABLE user_base(
+	ID BIGINT PRIMARY key AUTO_INCREMENT NOT NULL,
+	NAME VARCHAR(30) UNIQUE,
+	AGE INT
+);
+
+CREATE TABLE user_extend(
+	BIRTHDAY DATE,
+	FK_USER_BASE BIGINT NOT NULL UNIQUE,
+	CONSTRAINT FOREIGN KEY (FK_USER_BASE) REFERENCES user_base (ID)
+);
+
+INSERT INTO user_base (NAME, AGE) VALUES ('JACK', 20);
+INSERT INTO user_extend (BIRTHDAY, FK_USER_BASE) VALUES ('1999-03-01', LAST_INSERT_ID());
+INSERT INTO user_base (NAME, AGE) VALUES ('TOM', 21);
+INSERT INTO user_extend (BIRTHDAY, FK_USER_BASE) VALUES ('1999-03-02', LAST_INSERT_ID());
+INSERT INTO user_base (NAME, AGE) VALUES ('LEE', 22);
+INSERT INTO user_extend (BIRTHDAY, FK_USER_BASE) VALUES ('1999-03-03', LAST_INSERT_ID());
+INSERT INTO user_base (NAME, AGE) VALUES ('LUCY', 23);
+INSERT INTO user_extend (BIRTHDAY, FK_USER_BASE) VALUES ('1999-03-04', LAST_INSERT_ID());
+
+# 内连接查询（隐式）
+SELECT 
+	b.ID , b.`NAME` AS '姓名', b.AGE AS '年龄', e.BIRTHDAY AS '生日'
+FROM user_base AS b, user_extend AS e WHERE
+e.FK_USER_BASE = b.ID;
+
+
+
+

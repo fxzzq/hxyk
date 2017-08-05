@@ -1,0 +1,23 @@
+
+# 首先判断该数据库中有没有此表，如果有就删除，如果没有什么都不做
+#	DROP TABLE 表名;
+DROP TABLE IF EXISTS student;
+
+# 创建表
+CREATE TABLE student(
+	ID BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	NAME VARCHAR(30) UNIQUE NOT NULL,
+	AGE INT DEFAULT 0 
+);
+
+# 插入数据
+INSERT INTO student (NAME, AGE) VALUES ('Jack', 20);
+INSERT INTO student (NAME, AGE) VALUES ('Tom', NULL);
+INSERT INTO student (NAME, AGE) VALUES ('Tony', DEFAULT);
+INSERT INTO student (NAME, AGE) VALUES ('Lee', 23);
+
+# 查询表结果
+#SELECT * FROM student;
+#SELECT ID, NAME, AGE FROM student;
+SELECT s.NAME AS '姓名', s.AGE AS '年龄' FROM student AS s;
+

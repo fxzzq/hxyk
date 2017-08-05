@@ -1,0 +1,88 @@
+# 1:N 部门 －－ 员工；消费者 －－ 订单
+
+DROP TABLE IF EXISTS employee;
+DROP TABLE IF EXISTS department;
+
+# 主表 1
+CREATE TABLE department(
+	id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	name VARCHAR(50) UNIQUE
+);
+
+# 子表 N
+CREATE TABLE employee(
+	id BIGINT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	name VARCHAR(50),
+	fk_department BIGINT ,
+	CONSTRAINT FOREIGN KEY (fk_department) REFERENCES department (id)
+);
+
+# 给department添加数据
+INSERT INTO department (name) VALUES 
+('研发部'),
+('综合部'),
+('财务部'),
+('保卫部');
+
+#SELECT id FROM department WHERE name = '保卫部';
+
+# 给employee添加数据
+INSERT INTO employee (name, fk_department) VALUES
+('Jack', 1),
+('Tom', 2),
+('Tony', 2),
+('Lee', 3),
+('Mary', 3),
+('Tina', 3),
+('Tiger', NULL);
+
+# 内连接
+SELECT 
+	d.`name` AS '部门名称', e.`name` AS '员工姓名'
+FROM department AS d, employee AS e WHERE
+d.ID = e.fk_department;
+
+SELECT 
+	d.`name` AS '部门名称', e.`name` AS '员工姓名'
+FROM department AS d INNER JOIN employee AS e ON
+d.ID = e.fk_department;
+
+# 外连接，左外连接
+SELECT 
+	d.`name` AS '部门名称', e.`name` AS '员工姓名'
+FROM department AS d LEFT OUTER JOIN employee AS e ON
+d.ID = e.fk_department;
+
+# 外连接，右外连接
+SELECT 
+	d.`name` AS '部门名称', e.`name` AS '员工姓名'
+FROM department AS d RIGHT OUTER JOIN employee AS e ON
+d.ID = e.fk_department;
+
+# 全连接，MySQL 没有全连接的关键字，但是，它可以使用其它方法达到一样的效果
+# 排序 记住，外层一定要加上另外一个别名 T，再排序
+SELECT * FROM (SELECT 
+d.`name` AS '部门名称', e.`name` AS '员工姓名' FROM department AS d  
+LEFT JOIN employee AS e ON d.ID = e.FK_Department 
+UNION
+SELECT 
+d.`name` AS '部门名称', e.`name` AS '员工姓名' FROM department AS d  
+RIGHT JOIN employee AS e ON d.ID = e.FK_Department) AS T ORDER BY T.`员工姓名`;
+
+
+
+# 查询某个部门下有哪些员工
+# 给出一个部门名字，查询他所有员工的名字
+SELECT e.name AS '员工姓名' FROM employee AS e 
+WHERE e.fk_department = 
+(SELECT d.id FROM department AS d where d.name = '财务部');
+
+# 给定一个员工名字，查出他所在部门的名字
+SELECT d.name AS '部门名称' FROM department AS d
+WHERE d.id = 
+(SELECT e.fk_department FROM employee AS e WHERE e.name = 'Tina');
+
+
+
+
+

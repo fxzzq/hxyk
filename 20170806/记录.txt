@@ -1,0 +1,29 @@
+Javaee 
+
+ mvc
+ m model (javabean xxservice xxdao) db
+ v view jsp
+ c  controller servlet
+   
+
+javabean  数据承载bean(entiy)
+          service dao 业务逻辑Bean
+    
+分层开发
+ssm crud
+ Maven+SpringMVC+Spring+MyBatis+Bootstrap
+1、分页 
+2、数据校验
+    jquery前端校验 JSR303后端校验
+3、 ajax 
+4、 Rest风格的uri ;使用http协议请求方式的动词
+                    来表示对资源的操作（get(查询)
+                     post（新增）) put（修改） delete）
+
+5、前端框架 bootstrap 
+6、 分页-pagehelper
+7、逆向工程 mybatis generator
+
+Project Object Model，项目对象模型 pom.xml
+
+

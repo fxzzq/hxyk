@@ -1,0 +1,15 @@
+1、下载maven
+2、jdk1.6及以上
+    maven的bin目录追加到环境变量path中 F:\apache-maven-3.5.0\bin
+3、检查 mvn -v
+4 配置maven 
+  maven目录下的conf下的settings
+  设置指定的路径的仓库<localRepository>E:/local/repository</localRepository>
+
+
+
+
+idea  快捷键
+   psvm 
+   fori
+   sout

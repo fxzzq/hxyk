@@ -1,0 +1,46 @@
+crud 增删改查
+ crud是指在做计算处理时的增加(Create)、读取查询(Retrieve)、更新(Update)和删除(Delete)几个单词的首字母简写 。
+
+ Idea maven项目不能新建package和class的解决
+   这是因为Java是普通的文件夹 右键Mark  Directory As 下的Sources Root 即可。
+
+    generator 发电机
+
+基础环境搭建
+1、创建一个maven工程
+2、引入项目依赖的jar包
+    spring 
+    springmvc
+    mybatis
+    数据库连接池、驱动包
+    其他（jstl,servlet-api,junit）
+
+3、引入bootstrap前端框架
+4、编写ssm整合的关键配置文件
+   web.xml 
+   springmvc 
+   spring 
+   mybatis
+   使用mybatis的逆向工程生成对应的bean以及mapper
+5、修改mapper文件
+6、单元测试
+7、分页后台代码
+   crud 查询list页面
+   1、访问index.jsp
+   2、 index.jsp 页面发送出查询员工列表请求
+   3、 EmployeeController来接受请求，查出员工数据
+   4、 来到list.jsp页面进行展示
+8、查询—使用spring单元测试 测试分页的请求
+9、搭建bootstrap分页页面
+10、查询—显示分页数据(/emps 只适用于浏览器)
+   
+11、 改造查询-ajax
+     查询 返回分页的json数据  (提高扩展性 iOS 安卓 不仅是浏览器)
+12、
+
+ 
+   
+
+
+
+   

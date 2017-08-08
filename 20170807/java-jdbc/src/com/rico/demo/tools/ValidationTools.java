@@ -1,5 +1,7 @@
 package com.rico.demo.tools;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by Rico on 2017/8/7.
  */
@@ -18,12 +20,22 @@ public class ValidationTools {
         }
 
         // 不好的写法，不能用异常来控制语句
-        // 正确的写法：正则表达式判断 正整数
-        try {
+
+      /*  try {
             Integer.parseInt(string);
             return true;
         } catch (Exception e) {
             return false;
+        }*/
+        // 正确的写法：正则表达式判断 正整数
+        //只能输入非零的正整数："^\+?[1-9][0-9]*$"。
+       else{
+
+            String regex="^\\+?[1-9][0-9]*$";
+
+            return Pattern.matches(regex, string);
+
         }
+
     }
 }

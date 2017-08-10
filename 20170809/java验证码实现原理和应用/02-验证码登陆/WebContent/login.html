@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="login.do" method="post">
+		<p>
+			<label>Account:</label><input name="account">
+		</p>
+		<p>
+			<label>Password:</label><input name="password">
+		</p>
+		<p>
+			<label>验证码图片:</label><img onclick="switchCaptchaImg(this)" src="http://xxx.com/captcha.do?" width="200px" height="50px">
+		</p>
+		<p>
+			<label>验证码:</label><input name= "code">
+		</p>
+		<p>
+			<button>ok</button>
+		</p>
+	</form>
+	
+	<script>
+		var switchCaptchaImg=function(img){
+			if(!img["data-src"]){
+				img["data-src"]=img.src;
+			}
+			img.src=img["data-src"]+"?"+Math.random();
+		}
+	</script>
+</body>
+</html>

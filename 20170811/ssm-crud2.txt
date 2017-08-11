@@ -1,0 +1,138 @@
+crud 增删改查
+ crud是指在做计算处理时的增加(Create)、读取查询(Retrieve)、更新(Update)和删除(Delete)几个单词的首字母简写 。
+
+ Idea maven项目不能新建package和class的解决
+   这是因为Java是普通的文件夹 右键Mark  Directory As 下的Sources Root 即可。
+
+    generator 发电机
+
+基础环境搭建
+1、创建一个maven工程
+2、引入项目依赖的jar包
+    spring 
+    springmvc
+    mybatis
+    数据库连接池、驱动包
+    其他（jstl,servlet-api,junit）
+
+3、引入bootstrap前端框架
+4、编写ssm整合的关键配置文件
+   web.xml 
+   springmvc 
+   spring 
+   mybatis
+   使用mybatis的逆向工程生成对应的bean以及mapper
+5、修改mapper文件
+6、单元测试
+7、分页后台代码
+   crud 查询list页面
+   1、访问index.jsp
+   2、 index.jsp 页面发送出查询员工列表请求
+   3、 EmployeeController来接受请求，查出员工数据
+   4、 来到list.jsp页面进行展示
+8、查询—使用spring单元测试 测试分页的请求
+9、搭建bootstrap分页页面
+10、查询—显示分页数据(
+     首页发出 /emps 请求
+     控制器收到 查出分页数据 分页信息 转发到list页面
+     c:forEach EL表达式 遍历展示出来了   
+     只适用于浏览器<---->服务器 交互模型)
+    
+     移动互联网时代  客户端发出请求不仅仅是浏览器 
+     有可能是Android客户端 也有可能是iOS客户端  
+     他们给服务器发出请求 ，服务器转发一个页面给他们，
+      把页面的数据交给这2个客户端 ，做这个解析就比较费劲。
+    所以现在最常解决办法是服务器将有效的数据以json的形式，返回给客户端
+    这样，浏览器解析JSON也方便，Android iOS解析也方便。  
+
+11、 查询 返回分页的json数据  
+  (纯的ajax引用 来实现crud 提高扩展性 iOS 安卓 不仅是浏览器)
+     改造查询-纯的ajax引用
+     1、index.jsp页面直接发送ajax请求进行员工分页数据的查询
+     2、服务器将查出的数据，以json字符串的形式返回给浏览器
+     3、浏览器收到json字符串。可以用js对json进行解析。
+        使用js通过dom增删改改变页面。
+     4、返回json.实现客户端的无关性。
+
+12、查询—构建员工列表
+
+13、查询-构建分页条
+14、查询-分页显示完整细节
+    分页插件
+     reasonable：分页合理化参数，默认值为false。
+     当该参数设置为 true 时，pageNum<=0 时会查询第一页，
+     pageNum>pages（超过总数时），会查询最后一页。
+     默认false 时，直接根据参数进行查询。
+
+15、新增—创建员工新增的模态框
+
+    新增-逻辑 
+    在index.jsp页面点击“新增”
+    弹出新增对话框
+    去数据库查询部门列表，显示在对话框中 
+    用户输入数据  并进行校验
+        jquery前端校验 ajax用户重复校验（用户提交非法数据 可以绕过 ）
+         安全校验（前端校验+后端校验+数据库的约束）
+         重要数据 （后端校验（springmvc的JSR303） 唯一约束）
+      完成保存。
+16、新增—新增基本完成
+
+    Rest风格的uri 
+     /emp/{id}  get查询员工
+     /emp       post保存员工
+     /emp/{id}  put修改员工
+     /emp/{id}  delete删除员工
+
+17、新增 jquery前端校验完成
+18、新增 校验信息显示优化
+19、新增  ajax检验用户名是否重复
+  SELECT * FROM tb1_emp WHERE emp_name='张三'
+  SELECT count(*) FROM tb1_emp WHERE emp_name='张三'
+
+   2个错误 
+    把date写成 data
+    自动生成的 condition："\"emp_name\" 有错误 应写成 "emp_name=" 
+     
+   重置表单 
+   jquery没有reset方法  用取出  dom对象  
+       $("#empAddModal form")[0].reset();
+
+20、新增-ajax检验用户名的细节处理  
+21、 新增—JSR303校验 
+
+      数据库不能重复 约束
+22、修改-创建员工修改模态框
+      1、点击编辑
+      2、弹出用户修改的模态框（显示用户信息）
+      3、点击更新，完成用户修改
+23、修改-回显员工信息
+
+24、修改-Ajax发送PUT请求引发的血案
+25、修改-修改完成
+26、删除 单个员工
+    URI :/emp/{id} delete
+
+27、删除-全选&全不选
+28、删除-批量删除完成
+30、总结
+  ui（bootstrap）  
+   
+    项目构建
+在Maven Projects 单击Run Maven Build  打成war
+
+找到war包,复制到Tomcat的WebApps文件夹下面，然后直接访问网站即可访问。
+
+
+
+
+
+
+  
+
+
+
+   
+
+
+
+   

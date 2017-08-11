@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="curd">
+    <output-path>F:/apache-tomcat-7.0.72/webapps/curd</output-path>
+    <root id="root" />
+  </artifact>
+</component>

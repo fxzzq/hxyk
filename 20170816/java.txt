@@ -1,0 +1,68 @@
+JSP四种会话跟踪技术  cookie session url参数 隐藏域 
+
+HTTP是一种无状态协议
+
+1.面向对象编程有哪些特点?
+  封装 继承 多态  抽象
+
+2.String和StringBuffer有什么区别?
+
+String 字符串常量
+StringBuffer 字符串变量（线程安全）
+  每次对 String 类型进行改变的时候其实都等同于生成了一个新的 String 对象
+ String S0 = “This is only a” + “ simple” + “test”; 
+  String S2 = “This is only a”;
+String S3 = “ simple”;
+String S4 = “ test”;
+String S1 = S2 +S3 + S4;
+
+3.Integer和int有什么区别
+    Integer是int 的包装类
+
+4.String类能否被继承?
+  不能 String类是final类故不可以继承
+
+5.JSP中动态include和静态include有什么区别?
+      <jsp:include page="index.jsp"/>
+动态include的结构是两者独立,直到输出时才合并
+      <%@ include file="index.html"  %>
+静态include纯粹是把代码写在外面的一种共享方法,
+  
+6.用javascript打印一句话。
+    alert("hello world");
+7.final、finally、finalize的区别。
+     final声明变量  
+     finally处理异常
+     finalize 垃圾回收
+
+    
+8.用mysql创建一张表，字段有id(主键自增)、ip地址、时间。
+   create table Num(
+id int auto_increament primary key not null,
+ip varchar(100) , 
+time date
+     )
+    
+9.向表中插入一条记录，ip为127.0.0.1、时间为当前系统时间。
+  insert into Num(ip time) values("127.0.0.1",getdate())
+
+  
+10.删除表中所有ip为127.0.0.1的记录。
+    delete from Num where ip="127.0.0.1"
+  
+11.写一个函数，实现字符串反转。
+
+    public static String reverse(String s){
+       char[] newstr=s.toCharArray();
+       string temp="";
+      for(int i=newstr.length-1;i>=0;i--){
+       temp+=newstr[i];
+         
+       }
+   return  temp;
+ 	
+   }
+
+    
+
+

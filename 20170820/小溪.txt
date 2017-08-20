@@ -1,0 +1,52 @@
+超时重新登录
+SEO 了解 
+网站如何产生流量
+二维码生成
+水印
+邮件系统
+
+'OR'1'=1'
+
+js 如何控制是否提交表单
+list倒叙显示
+按照日期查询  
+list订单详情返回 到指定的页
+
+
+
+
+java  mytsql 占位符
+验证码 
+加密密码 java 
+修改密码
+详情
+记住密码 用cookie
+
+单号 公司 订单状态（还是那张订单表）
+
+状态信息 提交校验 
+
+requestScope.users.subList
+
+${requestScope}操作的是request的作用域，相当于request.getAttribute()
+
+requestScope通常是
+将某个变量或者对象在servlet或者acion中通过request.setAttribute()方法放入到request对象中，然后在页面中使用requestScope来进行数据的显示的
+
+index.jsp前端校验
+
+
+实现servlet传值到另一个servlet
+
+用请求转发。在你的第一个servlet中将要转发的值set到request的作用域中。
+例如这样：request.setAttribute("value1",传的值);
+然后将请求转发到另一个servlet
+例如这样：request.getRequestDispatcher("/另一个servlet").forward(request, response);
+最后在你的另1个servlet中通过request拿到值
+例如这样：String value1 = request.setAttribute("value1"）.toString()；
+将这三个过程融合到一起就完成了整个操作。
+
+
+
+
+
